@@ -1,5 +1,5 @@
 from __future__ import print_function
-#
+
 import os
 from keras.callbacks import TensorBoard
 from keras.applications.inception_v3 import InceptionV3
@@ -39,7 +39,7 @@ if not os.path.exists(output_weight):
 batch_size = 64
 nb_epoch = 10000
 
-IMAGE_FILE_PATH_DISTORTED = "/media/raehyuk/My Passport/SUN360_1000_images/python_training_dataset/"
+IMAGE_FILE_PATH_DISTORTED = ""
 
 classes = list(np.arange(0, 61, 1) / 50.)
 
@@ -140,5 +140,5 @@ with tf.device('/gpu:0'):
         callbacks=[tensorboard, checkpointer],
         use_multiprocessing=True,
         workers=2,
-        verbose=3
+        #verbose=3
     )
