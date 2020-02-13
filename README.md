@@ -42,4 +42,11 @@ The weights for our network can be found [here](https://drive.google.com/file/d/
   booktitle={Proceedings of the 15th ACM SIGGRAPH European Conference on Visual Media Production},
   year={2018}
 }
+
+@inproceedings{xiao2012recognizing,
+  title={Recognizing scene viewpoint using panoramic place representation},
+  author={Xiao, Jianxiong and Ehinger, Krista A and Oliva, Aude and Torralba, Antonio},
+  booktitle={2012 IEEE Conference on Computer Vision and Pattern Recognition},
+  year={2012},
+}
 ```
