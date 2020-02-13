@@ -39,7 +39,7 @@ if not os.path.exists(output_weight):
 batch_size = 64
 nb_epoch = 10000
 
-IMAGE_FILE_PATH_DISTORTED = "/home/cml-kaist/Documents/dataset/"
+IMAGE_FILE_PATH_DISTORTED = ""
 
 classes_focal = list(np.arange(40, 501, 10))# focal
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
@@ -67,7 +67,6 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
     paths_train, labels_focal_train, labels_distortion_train = list(paths_train), list(labels_focal_train), list(labels_distortion_train)
     labels_train = labels_focal_train
     input_train = [list(a) for a in zip(paths_train, labels_distortion_train)]
-    #labels_train = list(zip(labels_focal_train, labels_distortion_train))
 
     paths_valid = glob.glob(IMAGE_FILE_PATH_DISTORTED + 'valid/' + "*.jpg")
     paths_valid.sort()
@@ -91,7 +90,6 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
     paths_valid, labels_focal_valid, labels_distortion_valid = list(paths_valid), list(labels_focal_valid), list(labels_distortion_valid)
     labels_valid = labels_focal_valid
     input_valid = [list(a) for a in zip(paths_valid, labels_distortion_valid)]
-    #labels_valid = list(zip(labels_focal_valid, labels_distortion_valid))
 
     return input_train, labels_train, input_valid, labels_valid
 
@@ -111,11 +109,7 @@ with tf.device('/gpu:1'):
     phi_flattened = Flatten(name='phi-flattened')(phi_features)
     phi_concat = Concatenate(axis=-1)([phi_flattened,concat_input])
     final_output_focal = Dense(len(classes_focal), activation='softmax', name='output_distortion')(phi_concat)
-
-    # layer_index = 0
-    # for layer in phi_model.layers:
-    #     layer.name = layer.name + "_phi"
-
+    
     model = Model(input=[image_input,concat_input], output= final_output_focal)
 
     learning_rate = 10 ** -5
