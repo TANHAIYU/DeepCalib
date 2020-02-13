@@ -1,4 +1,3 @@
-# this is for images from the test dir, better name would be "evaluate"
 from __future__ import print_function
 
 import os, cv2, sys
@@ -19,15 +18,15 @@ config.allow_soft_placement = True
 set_session(tf.Session(config=config))
 
 
-IMAGE_FILE_PATH_DISTORTED = "/media/cml-kaist/My Passport/SUN360_1000_images/python_training_dataset/"
-path_to_weights = 'logs/20180509-140250/model_multi_class/Best/weights_06_2.49.h5'
+IMAGE_FILE_PATH_DISTORTED = ""
+path_to_weights = 'weights_06_2.49.h5'
 
-filename_results = os.path.split(path_to_weights)[0]+'/results1.txt'
+filename_results = os.path.split(path_to_weights)[0]+'/results.txt'
 
 if os.path.exists(filename_results):
     sys.exit("file exists")
 
-classes_focal = list(np.arange(40, 501, 10))# focal
+classes_focal = list(np.arange(40, 501, 10))
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
 
 def get_paths(IMAGE_FILE_PATH_DISTORTED):
@@ -68,7 +67,7 @@ with tf.device('/gpu:1'):
     image_input = Input(shape=image_shape, dtype='float32', name='main_input')
     input_shape_concat = (len(classes_distortion),)
     concat_input = Input(shape=input_shape_concat, dtype='float32', name='concat_input')
-    phi_model = InceptionV3(weights='imagenet', include_top=False, input_tensor=image_input, input_shape=image_shape)#,pooling='avg')
+    phi_model = InceptionV3(weights='imagenet', include_top=False, input_tensor=image_input, input_shape=image_shape)
     phi_features = phi_model.output
     phi_flattened = Flatten(name='phi-flattened')(phi_features)
     phi_concat = Concatenate(axis=-1)([phi_flattened,concat_input])
