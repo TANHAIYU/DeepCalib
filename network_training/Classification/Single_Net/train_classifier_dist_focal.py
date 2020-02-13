@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import os
-os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 
@@ -43,9 +43,9 @@ if not os.path.exists(output_weight):
 batch_size = 60
 nb_epoch = 10000
 
-IMAGE_FILE_PATH_DISTORTED = "/home/user/Documents/python_discrete/"
+IMAGE_FILE_PATH_DISTORTED = ""
 
-classes_focal = list(np.arange(50, 500 + 1, 10))# focal
+classes_focal = list(np.arange(50, 500 + 1, 10))
 classes_distortion = list(np.arange(0, 120 + 1, 2) / 100.)
 
 
