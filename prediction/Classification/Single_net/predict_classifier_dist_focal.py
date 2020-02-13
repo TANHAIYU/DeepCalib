@@ -18,7 +18,7 @@ path_to_weights = 'weights_06_5.61.h5'
 
 filename_results = results_path + 'airport.txt'
 
-classes_focal = list(np.arange(40, 501, 10))  # focal
+classes_focal = list(np.arange(40, 501, 10))
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
 
 
