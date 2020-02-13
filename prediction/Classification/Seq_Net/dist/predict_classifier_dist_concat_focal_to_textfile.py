@@ -1,4 +1,3 @@
-# this is for images from the test dir, better name would be "evaluate"
 from __future__ import print_function
 
 import os, cv2, sys
@@ -19,15 +18,15 @@ config.allow_soft_placement = True
 set_session(tf.Session(config=config))
 
 
-IMAGE_FILE_PATH_DISTORTED = "/media/cml-kaist/My Passport/SUN360_1000_images/python_training_dataset/"
-path_to_weights = 'logs/20180509-135939/model_multi_class/Best/weights_05_3.17.h5'
+IMAGE_FILE_PATH_DISTORTED = ""
+path_to_weights = 'weights_05_3.17.h5'
 
-filename_results = os.path.split(path_to_weights)[0]+'/results1.txt'
+filename_results = os.path.split(path_to_weights)[0]+'/results.txt'
 
 if os.path.exists(filename_results):
     sys.exit("file exists")
 
-classes_focal = list(np.arange(40, 501, 10))# focal
+classes_focal = list(np.arange(40, 501, 10))
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
 
 def get_paths(IMAGE_FILE_PATH_DISTORTED):
@@ -96,7 +95,7 @@ with tf.device('/gpu:1'):
         image = image * 2.
         image = np.expand_dims(image,0)
 
-        image = preprocess_input(image) ### sehr wichtig, brauchen wir das #########
+        image = preprocess_input(image)
 
         # loop
         input_focal = to_categorical(int(curr_input[1]), len(classes_focal))
