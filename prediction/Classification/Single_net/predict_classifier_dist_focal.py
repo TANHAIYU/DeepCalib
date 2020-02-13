@@ -1,4 +1,3 @@
-# this is for images from the test dir, better name would be "evaluate"
 from __future__ import print_function
 
 import os, cv2, sys
@@ -8,24 +7,16 @@ from keras.models import Model
 from keras.layers import Dense, Flatten, Input
 from keras import optimizers
 import numpy as np
-import glob, os, pdb
+import glob, os
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 
-# config = tf.ConfigProto()
-# config.gpu_options.allow_growth = True
-# config.allow_soft_placement = True
-# set_session(tf.Session(config=config))
+results_path = ""
+IMAGE_FILE_PATH_DISTORTED = ""
 
-results_path = "/media/cml-kaist/My Passport/8 - data/new_fisheye_images/results/"
-IMAGE_FILE_PATH_DISTORTED = "/home/cml-kaist/Desktop/Dohyeong/Undistortion/Try1/frames/"
-
-path_to_weights = '/media/cml-kaist/My Passport/3 - prediction/Classification/Single_net/weights_06_5.61.h5'
+path_to_weights = 'weights_06_5.61.h5'
 
 filename_results = results_path + 'airport.txt'
-
-#if os.path.exists(filename_results):
-   # sys.exit("file exists")
 
 classes_focal = list(np.arange(40, 501, 10))  # focal
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
@@ -41,12 +32,6 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
 paths_test = get_paths(IMAGE_FILE_PATH_DISTORTED)
 
 print(len(paths_test), 'test samples')
-
-#for image in paths_test:
-#    print(image)
-
-# pdb.set_trace()
-
 
 with tf.device('/gpu:0'):
     input_shape = (299, 299, 3)
@@ -70,10 +55,10 @@ with tf.device('/gpu:0'):
     print(len(paths_test))
 
     file = open(filename_results, 'a')
-    # for i, path in enumerate(paths_test):
-    #     if i % 1000 == 0:
-    #         print(i, ' ', len(paths_test))
-    image = cv2.imread('/media/cml-kaist/My Passport/8 - data/new_fisheye_images/church.jpg')
+   
+    #input image
+    image = cv2.imread('')
+   
     image = cv2.resize(image, (299, 299))
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image = image / 255.
@@ -83,7 +68,7 @@ with tf.device('/gpu:0'):
     image = image * 2.
     image = np.expand_dims(image, 0)
 
-    image = preprocess_input(image)  ### sehr wichtig, brauchen wir das #########
+    image = preprocess_input(image)  
 
     # loop
     prediction_focal = model.predict(image)[0]
