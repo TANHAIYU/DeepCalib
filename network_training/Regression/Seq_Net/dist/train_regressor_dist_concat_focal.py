@@ -15,11 +15,6 @@ import datetime, random
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 
-# config = tf.ConfigProto()
-# config.gpu_options.allow_growth = True
-# config.allow_soft_placement = True
-# set_session(tf.Session(config=config))
-
 model_name = 'model_multi_class/'
 SAVE = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + '/'
 # Save
@@ -39,7 +34,7 @@ if not os.path.exists(output_weight):
 batch_size = 64
 nb_epoch = 10000
 
-IMAGE_FILE_PATH_DISTORTED = "/home/user/Documents/dataset_continuous/"
+IMAGE_FILE_PATH_DISTORTED = ""
 
 focal_start = 40
 focal_end = 500
