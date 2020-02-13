@@ -39,11 +39,11 @@ if not os.path.exists(output_weight):
 batch_size = 64
 nb_epoch = 10000
 
-IMAGE_FILE_PATH_DISTORTED = "/home/user/Documents/dataset_new/"
+IMAGE_FILE_PATH_DISTORTED = ""
 
 focal_start = 40
 focal_end = 500
-classes_focal = list(np.arange(focal_start, focal_end+1, 10))# focal
+classes_focal = list(np.arange(focal_start, focal_end+1, 10))
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
 
 
@@ -154,5 +154,5 @@ with tf.device('/gpu:1'):
         callbacks=[tensorboard, checkpointer],
         use_multiprocessing=True,
         workers=2,
-        verbose=3
+        #verbose=3
     )
