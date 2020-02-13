@@ -39,12 +39,12 @@ if not os.path.exists(output_weight):
 batch_size = 64
 nb_epoch = 10000
 
-IMAGE_FILE_PATH_DISTORTED = "/home/cml-kaist/Documents/dataset_continuous/"
+IMAGE_FILE_PATH_DISTORTED = ""
 
 focal_start = 40
 focal_end = 500
 dist_end = 1.2
-classes_focal = list(np.arange(focal_start, focal_end+1, 10))# focal
+classes_focal = list(np.arange(focal_start, focal_end+1, 10))
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
 
 
@@ -106,7 +106,7 @@ with tf.device('/gpu:1'):
         layer.name = layer.name + "_phi"
 
     model = Model(input=main_input, output=final_output_focal)
-    model.load_weights('logs/20180528-010405/model_multi_class/Best/weights_05_0.01.h5')
+    model.load_weights('weights_05_0.01.h5')
 
     learning_rate = 10 ** -6
 
@@ -149,6 +149,6 @@ with tf.device('/gpu:1'):
         callbacks=[tensorboard, checkpointer],
         use_multiprocessing=True,
         workers=2,
-        verbose=3
+        #verbose=3
     )
 
