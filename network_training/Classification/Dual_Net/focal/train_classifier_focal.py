@@ -1,5 +1,5 @@
 from __future__ import print_function
-# just a commentd
+
 import os
 from keras.callbacks import TensorBoard
 from keras.applications.inception_v3 import InceptionV3
@@ -39,7 +39,7 @@ if not os.path.exists(output_weight):
 batch_size = 64
 nb_epoch = 10000
 
-IMAGE_FILE_PATH_DISTORTED = "/media/yoonjae/My Passport/testDataset/"
+IMAGE_FILE_PATH_DISTORTED = ""
 
 classes_focal = list(np.arange(40, 501, 10))# focal
 
@@ -48,7 +48,7 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
     paths_train.sort()
     parameters = []
     labels_train = []
-    # paths = paths[:50000] +paths[150000:160000]+ paths[-50000:]
+
     for path in paths_train:
         curr_parameter = float((path.split('_f_'))[1].split('_d_')[0])
         parameters.append(curr_parameter)
@@ -64,7 +64,7 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
     paths_valid.sort()
     parameters = []
     labels_valid = []
-    # paths = paths[:50000] +paths[150000:160000]+ paths[-50000:]
+
     for path in paths_valid:
         curr_parameter = float((path.split('_f_'))[1].split('_d_')[0])
         parameters.append(curr_parameter)
