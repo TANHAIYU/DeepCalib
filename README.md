@@ -1,5 +1,5 @@
 # DeepCalib
-DeepCalib: A Deep Learning Approach for Automatic Intrinsic Calibration of Wide Field-of-View Cameras http://cml.kaist.ac.kr/projects/DeepCalib
+The implementation of our [2018 CVMP DeepCalib](https://drive.google.com/file/d/1pZgR3wNS6Mvb87W0ixOHmEVV6tcI8d50/view) paper. 
 
 ## Table of contents
 
