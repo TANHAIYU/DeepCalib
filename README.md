@@ -26,9 +26,11 @@ We provided the code for the whole data generation pipeline. First you have to d
 
 ## Training DeepCalib
 To train DeepCalib you need to choose which architecture you want to use (refer to the `Section 3.3` of [our paper](https://drive.google.com/file/d/1pZgR3wNS6Mvb87W0ixOHmEVV6tcI8d50/view)). This repo contains all the training scripts for both classification and regression networks as well as all 3 architectures mentioned in the paper. In both regression and classification [Seq_Net](https://github.com/alexvbogdan/DeepCalib/tree/master/network_training/Classification/Seq_Net) and [Dual_Net](https://github.com/alexvbogdan/DeepCalib/tree/master/network_training/Classification/Dual_Net) folders "dist" and "focal" refer to the netwotks used for distortion parameter and focal length, respectively. All the training codes are available in this [folder](https://github.com/alexvbogdan/DeepCalib/tree/master/network_training).
+![DeepCalib architectures](https://github.com/alexvbogdan/DeepCalib/blob/master/DeepCalib_architectures.png)
 
 ## Camera Calibration
-To infer distortion parameter and focal length of a given camera we take a short video, extract the frames and run the prediction on all of them. After that, we take the mean or the median of predicted values and use that as a final result. However, in a slight modification you can use them for a single image prediction as well. In [prediction](https://github.com/alexvbogdan/DeepCalib/tree/master/prediction) we have the codes for all the networks except for `SeqNet` regression because the weights for this architecture are currently unavailable. We uploaded a simple python script for frame extraction from video sequence.
+To infer distortion parameter and focal length of a given camera we take a short video, extract the frames and run the prediction on all of them. After that, we take the mean or the median of predicted values and use that as a final result. However, in a slight modification you can use them for a single image prediction as well. Below you can see some of the results of image rectification using parameters obtained from single image calibration. ![Results](https://github.com/alexvbogdan/DeepCalib/blob/master/Results.png)
+In [prediction folder](https://github.com/alexvbogdan/DeepCalib/tree/master/prediction) we have the codes for all the networks except for `SeqNet` regression because the weights for this architecture are currently unavailable. We uploaded a simple python script for frame extraction from video sequence.
 
 ## Notes
 
