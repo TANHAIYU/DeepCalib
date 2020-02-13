@@ -37,7 +37,7 @@ In [prediction folder](https://github.com/alexvbogdan/DeepCalib/tree/master/pred
 For detailed information refer to the `Section 4.2` of [our paper](https://drive.google.com/file/d/1pZgR3wNS6Mvb87W0ixOHmEVV6tcI8d50/view). In short, `SingleNet` (a) is the best network for predicting focal length and distortion parameter in terms of accuracy. In addition, since it is a single network contrary to `DualNet` (b) and `Seqnet` (c), it is computationally cheaper to use the former. ![DeepCalib architectures](https://github.com/alexvbogdan/DeepCalib/blob/master/DeepCalib_architectures.png)
 
 #### Weights
-The weights for our network can be found [here](https://drive.google.com/file/d/1TYZn-f2z7O0hp_IZnNfZ06ExgU9ii70T/view). We recommend to use `SingleNet` since we experimentally confirmed it outperforms the other ones. The regression weights for `SeqNet` are currently unavailable, although you can train your own.
+The weights for our networks can be found [here](https://drive.google.com/file/d/1TYZn-f2z7O0hp_IZnNfZ06ExgU9ii70T/view). We recommend to use `SingleNet` since we experimentally confirmed it outperforms the other ones. The regression weights for `SeqNet` are currently unavailable, although you can train your own.
 
 ## Citation
 ```
