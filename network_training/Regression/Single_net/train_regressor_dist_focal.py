@@ -1,10 +1,6 @@
 from __future__ import print_function
 
 import os
-#os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
-#os.environ["CUDA_VISIBLE_DEVICES"]="0"
-
-
 from keras.callbacks import TensorBoard, LearningRateScheduler
 from keras.applications.inception_v3 import InceptionV3
 from keras.applications.imagenet_utils import preprocess_input
@@ -45,12 +41,12 @@ if not os.path.exists(output_weight):
 batch_size = 50
 nb_epoch = 10000
 
-IMAGE_FILE_PATH_DISTORTED = "/home/user/Documents/python_discrete/"
+IMAGE_FILE_PATH_DISTORTED = ""
 
 focal_start = 40
 focal_end = 500
 dist_end = 1.2
-classes_focal = list(np.arange(focal_start, focal_end+1, 10))# focal
+classes_focal = list(np.arange(focal_start, focal_end+1, 10))
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
 
 
@@ -100,7 +96,6 @@ paths_train, labels_train, paths_valid, labels_valid = get_paths(IMAGE_FILE_PATH
 print(len(paths_train), 'train samples')
 print(len(paths_valid), 'valid samples')
 
-#with tf.device('/gpu:0'):
 input_shape = (299, 299, 3)
 main_input = Input(shape=input_shape, dtype='float32', name='main_input')
 phi_model = InceptionV3(weights='imagenet', include_top=False, input_tensor=main_input, input_shape=input_shape)
@@ -157,5 +152,5 @@ model.fit_generator(
     callbacks=[tensorboard, checkpointer],
     use_multiprocessing=True,
     workers=2,
-    verbose=3
+    #verbose=3
 )
