@@ -1,4 +1,3 @@
-# this is for images from the test dir, better name would be "evaluate"
 from __future__ import print_function
 
 import os, cv2, sys
@@ -8,11 +7,11 @@ from keras.models import Model
 from keras.layers import Dense, Flatten, Input
 from keras import optimizers
 import numpy as np
-import glob, os
+import glob
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 
-os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"  
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 config = tf.ConfigProto()
@@ -20,27 +19,24 @@ config.gpu_options.allow_growth = True
 config.allow_soft_placement = True
 set_session(tf.Session(config=config))
 
-
-# IMAGE_FILE_PATH_DISTORTED = "/home/cml-kaist/Documents/dataset/"
-IMAGE_FILE_PATH_DISTORTED = "/media/cml-kaist/My Passport/1 - dataset_generation/dataset_continuous/"
-path_to_weights = '/media/cml-kaist/My Passport/3 - prediction/Regression/Single_net/weights_10_0.02.h5'
+IMAGE_FILE_PATH_DISTORTED = ""
+path_to_weights = 'weights_10_0.02.h5'
 IMAGE_SIZE = 299
 INPUT_SIZE = 299
 
-filename_results = '/media/cml-kaist/My Passport/3 - prediction/Regression/Single_net/results/singlenet_on_continuous.txt'
+filename_results = 'results.txt'
 
 if os.path.exists(filename_results):
     sys.exit("file exists")
 
 focal_start = 40
 focal_end = 500
-classes_focal = list(np.arange(focal_start, focal_end+1, 10))# focal
+classes_focal = list(np.arange(focal_start, focal_end+1, 10))
 classes_distortion = list(np.arange(0, 61, 1) / 50.)
 
 def get_paths(IMAGE_FILE_PATH_DISTORTED):
 
     paths_test = glob.glob(IMAGE_FILE_PATH_DISTORTED + "*.jpg")
-    #paths_test = glob.glob(IMAGE_FILE_PATH_DISTORTED + "*.jpg")
     paths_test.sort()
     parameters = []
     labels_focal_test = []
@@ -48,13 +44,11 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
         curr_parameter = float((path.split('_f_'))[1].split('_d_')[0])
         labels_focal_test.append(curr_parameter)
     labels_distortion_test = []
-    # paths = paths[:50000] +paths[150000:160000]+ paths[-50000:]
     for path in paths_test:
         curr_parameter = float((path.split('_d_'))[1].split('.jpg')[0])
         labels_distortion_test.append(curr_parameter)
 
     c = list(zip(paths_test, labels_focal_test, labels_distortion_test))
-    #random.shuffle(c) # this shuffle is shit, the one from sklearn is better
     paths_test, labels_focal_test, labels_distortion_test = zip(*c)
     paths_test, labels_focal_test, labels_distortion_test = list(paths_test), list(labels_focal_test), list(
         labels_distortion_test)
@@ -97,25 +91,23 @@ with tf.device('/gpu:0'):
         image = image * 2.
         image = np.expand_dims(image,0)
 
-        image = preprocess_input(image) ### sehr wichtig, brauchen wir das #########
+        image = preprocess_input(image) 
 
         # loop
         prediction_focal = model.predict(image)[0]
         prediction_dist = model.predict(image)[1]
-        #print(classes[np.argmax(prediction)],' ___ ', classes[labels_test[i]])
 
         if np.argmax(prediction_focal[0]) == labels_test[i][0]:
             n_acc_focal = n_acc_focal + 1
         if np.argmax(prediction_dist[0]) == labels_test[i][1]:
             n_acc_dist = n_acc_dist + 1
-        #print(np.argmax(prediction), ' ___ ', labels_test[i])
-        #copyfile(path, output_folder+os.path.basename(path)[:-4]+'_pd_'+str(classes[np.argmax(prediction)])+'.jpg')
+
         curr_focal_label = labels_test[i][0]
         curr_focal_pred = (prediction_focal[0][0] * (focal_end+1. - focal_start*1.) + focal_start*1. ) * (IMAGE_SIZE*1.0) / (INPUT_SIZE*1.0)
         curr_dist_label = labels_test[i][1]
         curr_dist_pred = prediction_dist[0][0]*1.2
         file.write(path + '\tlabel_focal\t' + str(curr_focal_label) + '\tprediction_focal\t' + str(curr_focal_pred) + '\tlabel_dist\t' + str(curr_dist_label) + '\tprediction_dist\t' + str(curr_dist_pred)+'\n')
-        #print(' ')
+
     print('focal:')
     print(n_acc_focal)
     print(len(paths_test))
