@@ -16,16 +16,10 @@ np.random.seed(2)   #1
 path_to_images = '/home/haiyutan/master-thesis/images/Dataset/Dataset_512_ori/*.png'
 list_image_paths = glob.glob(path_to_images)
 
-# H=299
-# W=299
-# u0 = W / 2.
-# v0 = H / 2.
-# grid_x, grid_y = np.meshgrid(range(W), range(H))
-
 starttime = time.clock()
-for image_path in list_image_paths:  # length of your filename list
-	print(image_path)
-	# image360 = cv2.imread('/home/user/Documents/SUN360_urls_9104x4552/all_images_new/gymindoor_8_.jpg')
+sum = 0
+for image_path in reversed(list_image_paths):  # length of your filename list
+	print("Processing",image_path)
 
 	width = 1024
 	height = 310
@@ -65,14 +59,12 @@ for image_path in list_image_paths:  # length of your filename list
 				Q21 = padImg[int(yu) + 1, int(xu), :]
 				Q22 = padImg[int(yu) + 1, int(xu) + 1, :]
 
-				disImg[j, i, :] = Q11 * (int(xu) + 1 - xu) * (int(yu) + 1 - yu) + \
-				                  Q12 * (xu - int(xu)) * (int(yu) + 1 - yu) + \
-				                  Q21 * (int(xu) + 1 - xu) * (yu - int(yu)) + \
-				                  Q22 * (xu - int(xu)) * (yu - int(yu))
+				disImg[j, i, :] = Q11 * (int(xu) + 1 - xu) * (int(yu) + 1 - yu) + Q12 * (xu - int(xu)) * (int(yu) + 1 - yu) + \
+				                  Q21 * (int(xu) + 1 - xu) * (yu - int(yu)) + Q22 * (xu - int(xu)) * (yu - int(yu))
 
 		name = image_path.split('/')[-1]
 		name_list = name.split('.')
-
-		cv2.imwrite('/home/haiyutan/master-thesis/images/dataset/test_discrete/' + name_list[0] + '_Lam_' + str(Lambda) + '_f_' + str(fx) +'_'+ str(fy)+ '.' + name_list[ -1], disImg)
-
+	sum = sum + 1
+	print(str(sum) + "th image finished")
+	cv2.imwrite('/home/haiyutan/master-thesis/images/dataset/test_discrete/' + name_list[0] + '_Lam_' + str(Lambda) + '_f_' + str(fx) +'_'+ str(fy)+ '.' + name_list[ -1], disImg)
 print "elapsed time ", time.clock() - starttime

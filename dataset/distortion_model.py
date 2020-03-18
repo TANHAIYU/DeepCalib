@@ -9,11 +9,11 @@ def distortionParameter():
     # Lambda = np.random.random_sample( )*1 #-5e-5/4
     x0 = 512
     y0 = 155
-    fx=random.uniform(718.856*0.6, 718.8562*1.8)
-    fy=random.uniform(718.856*0.6, 718.8562*1.8)
+    fx=random.uniform(718.856*0.7, 718.8562*1.3)  #0.6-1.8
+    fy=random.uniform(718.856*0.7, 718.8562*1.3)  #0.6-1.8
     # x0 =random.uniform(607.1928/2*0.45, 607.1928/2*0.55) #try
     # y0 = random.uniform(92.60785*0.45, 92.60785*0.55)
-    Lambda = 2 * random.uniform(0,1) -1
+    Lambda = (2 * random.uniform(0,1) -1) * 0.8 # vor- keine 0.8
     parameters.append(Lambda)
     parameters.append(x0)
     parameters.append(y0)
