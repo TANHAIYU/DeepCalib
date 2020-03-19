@@ -21,17 +21,16 @@ sum = 0
 for image_path in list_image_paths:  # length of your filename list
 	print("Processing",image_path)
 
-	width = 960#1024
-	height = 320#310
+	width = 1241
+	height = 376
 
 	parameters = distortion_model.distortionParameter()
-	fx = parameters[3]
-	fy = parameters[4]
+	f = parameters[3]
 	Lambda = parameters[0]
 
 	OriImg = cv2.imread(image_path)
 	# temImg = rescale(OriImg, 0.5, mode='reflect',anti_aliasing= True) #0.5
-	temImg = cv2.resize(OriImg, dsize=(960, 320), interpolation=cv2.INTER_CUBIC)
+	temImg = cv2.resize(OriImg, dsize=(1241, 376), interpolation=cv2.INTER_CUBIC)
 	ScaImg = skimage.img_as_ubyte(temImg)
 
 	padImg = np.array(np.zeros((ScaImg.shape[0] + 1, ScaImg.shape[1] + 1, 3)), dtype=np.uint8)
@@ -68,5 +67,6 @@ for image_path in list_image_paths:  # length of your filename list
 
 	EndImg = cv2.resize(disImg, dsize=(299, 299), interpolation=cv2.INTER_CUBIC)
 	print(str(sum) + "th image finished")
-	cv2.imwrite('/home/haiyutan/master-thesis/images/dataset/inceptionv3 test_discrete/' + name_list[0] + '_Lam_' + str(Lambda) + '_f_' + str(fx) +'_'+ str(fy)+ '.' + name_list[ -1], EndImg)
+	cv2.imwrite('/home/haiyutan/master-thesis/images/dataset/inceptionv3_test_discrete_add_dc_distortionCenter/' \
+	            + name_list[0] + '_Lam_' + str(Lambda) + '_f_' + str(f) +'_dc_'+ str(x0)+ '_'+str(y0)+'.' + name_list[ -1], EndImg)
 print "elapsed time ", time.clock() - starttime

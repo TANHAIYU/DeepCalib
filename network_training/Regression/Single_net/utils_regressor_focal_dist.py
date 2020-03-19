@@ -114,24 +114,24 @@ class CustomModelCheckpoint(keras.callbacks.Callback):
 #     return sliced_image
 
 
-# def add_noise(image):
-#     image = np.clip(image,0,255)
-#     if bool(random.getrandbits(1)):
-#         total = IMAGE_WIDTH * IMAGE_HEIGHT * 3
-#         a = np.random.randint(-3,4, size=total)
-#         a = a.reshape(IMAGE_HEIGHT,IMAGE_WIDTH,3)
-#         noise = image + a
-#         to_int_noise = noise.astype('uint8')
-#     else:
-#         row,col,ch= image.shape
-#         mean = 0
-#         var = 0.1
-#         sigma = var**0.5
-#         gauss = np.random.normal(mean,sigma,(row,col,ch))
-#         gauss = gauss.reshape(row,col,ch)
-#         noisy = image + gauss
-#         to_int_noise = noisy.astype('uint8')
-#     return to_int_noise
+def add_noise(image):
+    image = np.clip(image,0,255)
+    if bool(random.getrandbits(1)):
+        total = IMAGE_WIDTH * IMAGE_HEIGHT * 3
+        a = np.random.randint(-3,4, size=total)
+        a = a.reshape(IMAGE_HEIGHT,IMAGE_WIDTH,3)
+        noise = image + a
+        to_int_noise = noise.astype('uint8')
+    else:
+        row,col,ch= image.shape
+        mean = 0
+        var = 0.1
+        sigma = var**0.5
+        gauss = np.random.normal(mean,sigma,(row,col,ch))
+        gauss = gauss.reshape(row,col,ch)
+        noisy = image + gauss
+        to_int_noise = noisy.astype('uint8')
+    return to_int_noise
 
 # def add_gaussian_noise(image):
 #     image = np.clip(image, 0, 255)
@@ -145,13 +145,13 @@ class CustomModelCheckpoint(keras.callbacks.Callback):
 #     to_int_noisy = noisy.astype('uint8')
 #     return to_int_noisy
 
-# def add_contrast_brightness(image):
-#      image = np.clip(image,0,255)
-#      contrast = np.random.uniform(0.9,1.1)
-#      brightness = np.random.randint(-5,5)
-#      adjusted_image = image * contrast + brightness
-#      to_int_adjusted = adjusted_image.astype('uint8')
-#      return to_int_adjusted
+def add_contrast_brightness(image):
+     image = np.clip(image,0,255)
+     contrast = np.random.uniform(0.9,1.1)
+     brightness = np.random.randint(-5,5)
+     adjusted_image = image * contrast + brightness
+     to_int_adjusted = adjusted_image.astype('uint8')
+     return to_int_adjusted
 
 # def blur_randomly(image):
 #     image = np.clip(image, 0, 255)
@@ -257,9 +257,9 @@ class RotNetDataGenerator(object):
         # create array to hold the images
         batch_x = np.zeros((self.batch_size,) + self.input_shape, dtype='float32')
         # create array to hold the labels
-        # batch_label_focal = []
-        # batch_label_distortion = []
         batch_label_focal = []
+        batch_labels_dc_x = []
+        batch_labels_dc_y = []
         batch_label_distortion = []
         # iterate through the current batch
         for index, current_path in enumerate(image_path_temp):
@@ -281,14 +281,18 @@ class RotNetDataGenerator(object):
             batch_x[index] = image
             # if self.one_hot:
             batch_label_focal.append(labels[index][0])
-            batch_label_distortion.append(labels[index][1])
+            batch_labels_dc_x.append(labels[index][1])
+            batch_labels_dc_x.append(labels[index][2])
+            batch_label_distortion.append(labels[index][3])
         batch_label_focal = np.array(batch_label_focal)
+        batch_labels_dc_x = np.array(batch_labels_dc_x)
+        batch_labels_dc_y = np.array(batch_labels_dc_y)
         batch_label_distortion = np.array(batch_label_distortion)
         # preprocess input images
         if self.preprocess_func:
             batch_x = self.preprocess_func(batch_x)
 
-        return batch_x, {'output_focal': batch_label_focal, 'output_distortion': batch_label_distortion}
+        return batch_x, {'output_focal_x': batch_label_focal,'output_dc_x':batch_labels_dc_x,'output_dc_y':batch_labels_dc_y, 'output_distortion': batch_label_distortion}
 
 
 
