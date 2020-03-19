@@ -6,7 +6,7 @@ from keras.applications.inception_v3 import InceptionV3
 from keras.applications.imagenet_utils import preprocess_input
 from keras.models import Model
 from keras.layers import Dense, Flatten, Input
-from utils_regressor_focal_dist import RotNetDataGenerator, angle_error, CustomModelCheckpoint
+from utils_regressor_focal_dist import RotNetDataGenerator, CustomModelCheckpoint  # , angle_error
 from keras import optimizers
 import numpy as np
 import glob, math
@@ -57,7 +57,7 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
     labels_focal_train = []
     for path in paths_train:
         curr_parameter = float((path.split('_f_'))[1].split('_d_')[0])
-        labels_focal_train.append((curr_parameter - focal_start*1.) / (focal_end*1.+1. - focal_start*1.)) #normalize bewteen 0 and 1
+        labels_focal_train.append((curr_parameter - focal_start*1.) / (focal_end*1.+1. - focal_start*1.)) # normalize bewteen 0 and 1
     labels_distortion_train = []
     for path in paths_train:
         curr_parameter = float((path.split('_d_'))[1].split('.jpg')[0])
@@ -86,7 +86,6 @@ def get_paths(IMAGE_FILE_PATH_DISTORTED):
     paths_valid, labels_focal_valid, labels_distortion_valid = zip(*c)
     paths_valid, labels_focal_valid, labels_distortion_valid = list(paths_valid), list(labels_focal_valid), list(labels_distortion_valid)
     labels_valid = [list(a) for a in zip(labels_focal_valid, labels_distortion_valid)]
-
 
     return paths_train, labels_train, paths_valid, labels_valid
 

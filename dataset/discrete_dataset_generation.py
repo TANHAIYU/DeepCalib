@@ -1,28 +1,28 @@
 import numpy as np
 import cv2
 import time, glob
-from scipy import interpolate
 import random
 import skimage
-import pdb
 import distortion_model
+from keras.preprocessing import image
 
 from numpy.lib.scimath import sqrt as csqrt
 
 random.seed(9002)   # 9001
 np.random.seed(2)   #1
 
-# ----------------constants--------------
-path_to_images = '/home/haiyutan/master-thesis/images/Dataset/Dataset_512_ori/*.png'
+# ----------------constants--------------#
+# path_to_images = '/home/haiyutan/master-thesis/images/Dataset/Dataset_512_ori/*.png' #seq 00
+path_to_images = '/mnt/usb-Seagate_Expansion_NAA9EWS9-0:0-part1/Dataset/dataset/sequences/21/image_2/*.png' #seq
 list_image_paths = glob.glob(path_to_images)
 
 starttime = time.clock()
 sum = 0
-for image_path in reversed(list_image_paths):  # length of your filename list
+for image_path in list_image_paths:  # length of your filename list
 	print("Processing",image_path)
 
-	width = 1024
-	height = 310
+	width = 960#1024
+	height = 320#310
 
 	parameters = distortion_model.distortionParameter()
 	fx = parameters[3]
@@ -31,7 +31,7 @@ for image_path in reversed(list_image_paths):  # length of your filename list
 
 	OriImg = cv2.imread(image_path)
 	# temImg = rescale(OriImg, 0.5, mode='reflect',anti_aliasing= True) #0.5
-	temImg = cv2.resize(OriImg, dsize=(1024, 310), interpolation=cv2.INTER_CUBIC)
+	temImg = cv2.resize(OriImg, dsize=(960, 320), interpolation=cv2.INTER_CUBIC)
 	ScaImg = skimage.img_as_ubyte(temImg)
 
 	padImg = np.array(np.zeros((ScaImg.shape[0] + 1, ScaImg.shape[1] + 1, 3)), dtype=np.uint8)
@@ -65,6 +65,8 @@ for image_path in reversed(list_image_paths):  # length of your filename list
 		name = image_path.split('/')[-1]
 		name_list = name.split('.')
 	sum = sum + 1
+
+	EndImg = cv2.resize(disImg, dsize=(299, 299), interpolation=cv2.INTER_CUBIC)
 	print(str(sum) + "th image finished")
-	cv2.imwrite('/home/haiyutan/master-thesis/images/dataset/test_discrete/' + name_list[0] + '_Lam_' + str(Lambda) + '_f_' + str(fx) +'_'+ str(fy)+ '.' + name_list[ -1], disImg)
+	cv2.imwrite('/home/haiyutan/master-thesis/images/dataset/inceptionv3 test_discrete/' + name_list[0] + '_Lam_' + str(Lambda) + '_f_' + str(fx) +'_'+ str(fy)+ '.' + name_list[ -1], EndImg)
 print "elapsed time ", time.clock() - starttime

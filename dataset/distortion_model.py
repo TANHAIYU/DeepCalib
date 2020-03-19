@@ -7,8 +7,8 @@ import random
 def distortionParameter():
     parameters = []
     # Lambda = np.random.random_sample( )*1 #-5e-5/4
-    x0 = 512
-    y0 = 155
+    x0 = 480#512
+    y0 = 160#155
     fx=random.uniform(718.856*0.7, 718.8562*1.3)  #0.6-1.8
     fy=random.uniform(718.856*0.7, 718.8562*1.3)  #0.6-1.8
     # x0 =random.uniform(607.1928/2*0.45, 607.1928/2*0.55) #try
