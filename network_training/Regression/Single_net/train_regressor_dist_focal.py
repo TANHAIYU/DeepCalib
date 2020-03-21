@@ -131,7 +131,7 @@ layer_index = 0
 for layer in phi_model.layers:
     layer.name = layer.name + "_phi"
 
-model = Model(input=main_input, output=[final_output_focal_x,final_output_focal_y,final_output_distortion])
+model = Model(input=main_input, output=[final_output_focal,final_output_dc_x,final_output_dc_y,final_output_distortion])
 
 learning_rate = 10 ** -6
 
