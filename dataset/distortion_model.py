@@ -1,12 +1,10 @@
-import math
-import numpy as np
 import random
 
 
 """" generate distortion parameter for different distortion model """
 def distortionParameter():
     parameters = []
-    f=random.uniform(0.6, 1.8)  #0.6-1.8
+    f=random.uniform(1.8,2.6)  #0.6-1.8
     x0 =random.uniform(0.45, 0.55) #try
     y0 = random.uniform(0.45, 0.55)
     Lambda = (2 * random.uniform(0,1) -1) * 0.8 # vor- keine 0.8
