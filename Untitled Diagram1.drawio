@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-09-04T05:44:52.052Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36" etag="2cJt2-qS7EmyV3cxJUFM" version="13.6.6" type="github">
+<mxfile host="app.diagrams.net" modified="2020-09-04T06:06:32.100Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36" etag="RxfGm_XlRDacqP7NyRB9" version="13.6.6" type="github">
   <diagram id="pzA2-sdbGGpvgS-1zQOs" name="Page-1">
-    <mxGraphModel dx="870" dy="605" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1740" dy="1210" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -75,6 +75,100 @@
             <mxPoint x="420" y="640" as="sourcePoint" />
             <mxPoint x="510" y="510" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-18" value="数据库" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="10" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-19" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="230" as="sourcePoint" />
+            <mxPoint x="920" y="119.99999999999989" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-22" value="初始化" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-24" value="添加图像" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-25" value="光束平差法" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-26" value="光束平差法" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-27" value="内参为异常值" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="855" y="560" width="130" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-30" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-22" target="EH3SXl_MTw3bdBYvh7Rc-25">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="840" y="420" as="sourcePoint" />
+            <mxPoint x="890" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-31" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-25" target="EH3SXl_MTw3bdBYvh7Rc-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="840" y="420" as="sourcePoint" />
+            <mxPoint x="920" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-35" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-24" target="EH3SXl_MTw3bdBYvh7Rc-26">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="840" y="420" as="sourcePoint" />
+            <mxPoint x="890" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-36" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-26" target="EH3SXl_MTw3bdBYvh7Rc-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="840" y="420" as="sourcePoint" />
+            <mxPoint x="890" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-37" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="390" as="sourcePoint" />
+            <mxPoint x="700" y="510" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="700" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-38" value="是" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="760" y="580" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-39" value="异常值剔除" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-40" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-39" target="EH3SXl_MTw3bdBYvh7Rc-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="390" as="sourcePoint" />
+            <mxPoint x="910" y="340" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="700" y="370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-41" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-27" target="EH3SXl_MTw3bdBYvh7Rc-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="390" as="sourcePoint" />
+            <mxPoint x="950" y="340" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1120" y="610" />
+              <mxPoint x="1120" y="370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-42" value="否" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="480" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-43" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="EH3SXl_MTw3bdBYvh7Rc-27" target="EH3SXl_MTw3bdBYvh7Rc-44">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="890" y="530" as="sourcePoint" />
+            <mxPoint x="920" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EH3SXl_MTw3bdBYvh7Rc-44" value="相机内参" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="870" y="680" width="100" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
